@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/addCityFragment">
+
+
+    <fragment
+        android:id="@+id/addCityFragment"
+        android:name="com.ahmedorabi.weatherapp.features.add_city.AddCityFragment"
+        android:label="fragment_add_city"
+        tools:layout="@layout/fragment_add_city" >
+        <action
+            android:id="@+id/action_addCityFragment_to_weatherDetailsFragment"
+            app:destination="@id/weatherDetailsFragment" />
+        <action
+            android:id="@+id/action_addCityFragment_to_historicalFragment"
+            app:destination="@id/historicalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherDetailsFragment"
+        android:name="com.ahmedorabi.weatherapp.features.weather_details.WeatherDetailsFragment"
+        android:label="fragment_weather_details"
+        tools:layout="@layout/fragment_weather_details" />
+    <fragment
+        android:id="@+id/historicalFragment"
+        android:name="com.ahmedorabi.weatherapp.features.historical.HistoricalFragment"
+        android:label="fragment_historical"
+        tools:layout="@layout/fragment_historical" />
+
+
+</navigation>
