@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmedorabi.weatherapp.R
 import com.ahmedorabi.weatherapp.core.domain.model.City
-import com.ahmedorabi.weatherapp.databinding.CurrencyItemBinding
+import com.ahmedorabi.weatherapp.databinding.CityItemBinding
 
 class CityAdapter :
     ListAdapter<City, CityAdapter.MyViewHolder>(DiffCallback) {
@@ -31,7 +31,7 @@ class CityAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
-            CurrencyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CityItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -42,7 +42,7 @@ class CityAdapter :
     }
 
 
-    class MyViewHolder(private var binding: CurrencyItemBinding) :
+    class MyViewHolder(private var binding: CityItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: City) {

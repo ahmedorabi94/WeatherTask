@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_addCityFragment_to_historicalFragment"
             app:destination="@id/historicalFragment" />
+        <action
+            android:id="@+id/action_addCityFragment_to_addCityDialogFragment"
+            app:destination="@id/addCityDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/weatherDetailsFragment"
@@ -28,6 +31,11 @@
         android:name="com.ahmedorabi.weatherapp.features.historical.HistoricalFragment"
         android:label="fragment_historical"
         tools:layout="@layout/fragment_historical" />
+    <dialog
+        android:id="@+id/addCityDialogFragment"
+        android:name="com.ahmedorabi.weatherapp.features.add_city.AddCityDialogFragment"
+        android:label="fragment_add_city_dialog"
+        tools:layout="@layout/fragment_add_city_dialog" />
 
 
 </navigation>

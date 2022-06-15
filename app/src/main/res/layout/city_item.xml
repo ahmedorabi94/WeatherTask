@@ -15,7 +15,7 @@
     card_view:rippleColor="#cfd8dc">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,32 +30,40 @@
             android:id="@+id/cityNameTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:lineSpacingExtra="0dp"
             android:maxLines="1"
-            android:text="EUR"
             android:textAlignment="center"
-            android:textSize="12sp" />
-
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/infoBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_dialog_info"
+            android:background="@null"
+            android:backgroundTint="@color/cardview_dark_background"
             android:includeFontPadding="false"
             android:lineSpacingExtra="0dp"
             android:maxLines="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/info"
             android:textAlignment="center"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </com.google.android.material.card.MaterialCardView>

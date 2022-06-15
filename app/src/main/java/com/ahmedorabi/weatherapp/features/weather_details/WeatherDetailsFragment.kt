@@ -44,7 +44,7 @@ class WeatherDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //initUI()
-        viewModel.getRatesResponseFlow("london")
+        viewModel.getRatesResponseFlow(cityName ?: "london")
         observeViewModel()
 
 
