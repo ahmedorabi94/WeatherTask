@@ -1,5 +1,6 @@
 package com.ahmedorabi.weatherapp.features.weather_details
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -74,8 +75,9 @@ class WeatherDetailsFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI(response: WeatherResponse) {
-        binding.titleTV.text = "London"
+        binding.titleTV.text = response.name
         val url = "https://openweathermap.org/img/w/${response.weather[0].icon}.png"
         Glide.with(this).load(url).into(binding.weatherIcon)
         binding.descriptionTV.text = "Description : " + response.weather[0].description
