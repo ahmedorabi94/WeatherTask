@@ -26,12 +26,15 @@
         tools:listitem="@layout/city_item" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/addCityBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:src="@android:drawable/ic_input_add"
+        android:text="Add City"
+        app:cornerRadius="30dp"
+        android:textAllCaps="false"
+        app:icon="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -40,15 +40,8 @@ class AddCityFragment : Fragment() {
         observeViewModel()
 
         binding.addCityBtn.setOnClickListener{
-            val rnds = (0..20).random() // generated random from 0 to 10 included
-
-            //viewModel.addCity("Paris ${rnds}")
-
-
             findNavController().navigate(R.id.action_addCityFragment_to_addCityDialogFragment)
-
         }
-
 
     }
 
