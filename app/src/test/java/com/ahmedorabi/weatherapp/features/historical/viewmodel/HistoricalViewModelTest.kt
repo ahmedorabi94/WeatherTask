@@ -31,7 +31,7 @@ class HistoricalViewModelTest {
 
 
     @Mock
-    private lateinit var apiRatesObserver: Observer<List<HistoricalModel>>
+    private lateinit var apiCitiesObserver: Observer<List<HistoricalModel>>
 
     private lateinit var viewModel: HistoricalViewModel
 
@@ -46,7 +46,7 @@ class HistoricalViewModelTest {
     }
 
     @Test
-    fun shouldGetRatesListSuccessResponse() {
+    fun shouldGetCitiesListSuccessResponse() {
 
         val list = ArrayList<HistoricalModel>()
         val flow = flow {
@@ -58,17 +58,17 @@ class HistoricalViewModelTest {
                 .`when`(useCase)
                 .invoke("london")
 
-            viewModel.getRatesResponseFlow("london")
+            viewModel.getCitiesResponseFlow("london")
 
-            viewModel.ratesResponse.observeForever(apiRatesObserver)
+            viewModel.citiesResponse.observeForever(apiCitiesObserver)
 
             Mockito.verify(useCase).invoke("london")
 
-            Mockito.verify(apiRatesObserver).onChanged(list)
+            Mockito.verify(apiCitiesObserver).onChanged(list)
 
-            Assert.assertEquals(viewModel.ratesResponse.value, list)
+            Assert.assertEquals(viewModel.citiesResponse.value, list)
 
-            viewModel.ratesResponse.removeObserver(apiRatesObserver)
+            viewModel.citiesResponse.removeObserver(apiCitiesObserver)
 
 
         }

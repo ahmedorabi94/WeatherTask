@@ -16,26 +16,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddCityViewModel @Inject constructor(
-    private val useCase: GetCitiesLocalUseCase,
-    private val addRateUseCase: AddCityUseCase
+    private val getCitiesLocalUseCase: GetCitiesLocalUseCase,
+    private val addCityUseCase: AddCityUseCase
 ) :
     ViewModel() {
 
-    private val _ratesResponse = MutableLiveData<List<City>>()
-    val ratesResponse: LiveData<List<City>>
-        get() = _ratesResponse
+    private val _citiesResponse = MutableLiveData<List<City>>()
+    val citiesResponse: LiveData<List<City>>
+        get() = _citiesResponse
 
-
-    init {
-      //  getRatesResponseFlow()
-    }
-
-     fun getRatesResponseFlow() {
+     fun getCitiesResponseFlow() {
         viewModelScope.launch {
-            useCase.invoke()
+            getCitiesLocalUseCase.invoke()
                 .collect { response ->
                     Timber.e(response.toString())
-                    _ratesResponse.value = response
+                    _citiesResponse.value = response
                 }
         }
 
@@ -44,7 +39,7 @@ class AddCityViewModel @Inject constructor(
 
     fun addCity(name : String){
         viewModelScope.launch {
-            addRateUseCase.invoke(City(name = name))
+            addCityUseCase.invoke(City(name = name))
         }
     }
 

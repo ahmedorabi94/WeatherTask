@@ -24,43 +24,43 @@ import java.io.IOException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
- class ApiRatesListDataSourceTest{
-     @get:Rule
-     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
+class ApiCitiesListDataSourceTest {
+    @get:Rule
+    val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
-     @get:Rule
-     val testCoroutineRule = TestCoroutineRule()
-
-
-     @Mock
-     lateinit var apiService: ApiService
+    @get:Rule
+    val testCoroutineRule = TestCoroutineRule()
 
 
-     private lateinit var apiRatesListDataSource: ApiRatesListDataSource
+    @Mock
+    lateinit var apiService: ApiService
 
 
-     @Before
-     fun setup() {
+    private lateinit var apiCitiesListDataSource: ApiCitiesListDataSource
 
-         apiRatesListDataSource = ApiRatesListDataSource(apiService)
 
-     }
+    @Before
+    fun setup() {
+
+        apiCitiesListDataSource = ApiCitiesListDataSource(apiService)
+
+    }
 
 
     @Test
-    fun shouldGetRatesSuccessResponse() {
+    fun shouldGetCitiesSuccessResponse() {
 
 
-        val rateResponse = Mockito.mock(WeatherResponse::class.java)
-        val result1 = Resource.success(rateResponse)
+        val weatherResponse = Mockito.mock(WeatherResponse::class.java)
+        val result1 = Resource.success(weatherResponse)
 
         runBlocking {
 
-            Mockito.doReturn(rateResponse)
+            Mockito.doReturn(weatherResponse)
                 .`when`(apiService)
                 .getWeatherResponseAsync("london")
 
-            val response = apiRatesListDataSource.getWeatherResponse("london").drop(1).first()
+            val response = apiCitiesListDataSource.getWeatherResponse("london").drop(1).first()
 
             Assert.assertEquals(response, result1)
 
@@ -69,7 +69,7 @@ import java.io.IOException
 
 
     @Test
-    fun shouldGetListRatesFailureResponse() {
+    fun shouldGetListCitiesFailureResponse() {
 
         val result1 = Resource.error<WeatherResponse>("NetworkError")
 
@@ -80,11 +80,11 @@ import java.io.IOException
                 throw IOException("Ooops")
             }
 
-            val response = apiRatesListDataSource.getWeatherResponse("london").drop(1).first()
+            val response = apiCitiesListDataSource.getWeatherResponse("london").drop(1).first()
 
             Assert.assertEquals(response, result1)
 
 
         }
     }
- }
+}

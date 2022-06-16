@@ -36,7 +36,7 @@ class WeatherDetailsViewModelTest {
 
 
     @Mock
-    private lateinit var apiRatesObserver: Observer<Resource<WeatherResponse>>
+    private lateinit var apiCitiesObserver: Observer<Resource<WeatherResponse>>
 
     private lateinit var viewModel: WeatherDetailsViewModel
 
@@ -53,11 +53,11 @@ class WeatherDetailsViewModelTest {
     }
 
     @Test
-    fun shouldGetRatesListSuccessResponse() {
+    fun shouldGetCitiesListSuccessResponse() {
 
-        val rateResponse = mock(WeatherResponse::class.java)
+        val weatherResponse = mock(WeatherResponse::class.java)
 
-        val result1 = Resource.success(rateResponse)
+        val result1 = Resource.success(weatherResponse)
 
 
         val flow = flow {
@@ -69,17 +69,17 @@ class WeatherDetailsViewModelTest {
                 .`when`(useCase)
                 .invoke("london")
 
-            viewModel.getRatesResponseFlow("london")
+            viewModel.getCitiesResponseFlow("london")
 
-            viewModel.ratesResponse.observeForever(apiRatesObserver)
+            viewModel.citiesResponse.observeForever(apiCitiesObserver)
 
             Mockito.verify(useCase).invoke("london")
 
-            Mockito.verify(apiRatesObserver).onChanged(Resource.success(rateResponse))
+            Mockito.verify(apiCitiesObserver).onChanged(Resource.success(weatherResponse))
 
-            assertEquals(viewModel.ratesResponse.value, result1)
+            assertEquals(viewModel.citiesResponse.value, result1)
 
-            viewModel.ratesResponse.removeObserver(apiRatesObserver)
+            viewModel.citiesResponse.removeObserver(apiCitiesObserver)
 
 
         }

@@ -32,7 +32,7 @@ class AddCityViewModelTest {
 
 
     @Mock
-    private lateinit var apiRatesObserver: Observer<List<City>>
+    private lateinit var apiCitiesObserver: Observer<List<City>>
 
     private lateinit var viewModel: AddCityViewModel
 
@@ -41,15 +41,15 @@ class AddCityViewModelTest {
     private lateinit var useCase: GetCitiesLocalUseCase
 
     @Mock
-    private lateinit var addRateUseCase: AddCityUseCase
+    private lateinit var addCityUseCase: AddCityUseCase
 
     @Before
     fun setup() {
-        viewModel = AddCityViewModel(useCase, addRateUseCase)
+        viewModel = AddCityViewModel(useCase, addCityUseCase)
     }
 
     @Test
-    fun shouldGetRatesListSuccessResponse() {
+    fun shouldGetCitiesListSuccessResponse() {
 
         val list = ArrayList<City>()
         list.add(City(name = "london"))
@@ -62,17 +62,17 @@ class AddCityViewModelTest {
                 .`when`(useCase)
                 .invoke()
 
-            viewModel.getRatesResponseFlow()
+            viewModel.getCitiesResponseFlow()
 
-            viewModel.ratesResponse.observeForever(apiRatesObserver)
+            viewModel.citiesResponse.observeForever(apiCitiesObserver)
 
             Mockito.verify(useCase).invoke()
 
-            Mockito.verify(apiRatesObserver).onChanged(list)
+            Mockito.verify(apiCitiesObserver).onChanged(list)
 
-            Assert.assertEquals(viewModel.ratesResponse.value, list)
+            Assert.assertEquals(viewModel.citiesResponse.value, list)
 
-            viewModel.ratesResponse.removeObserver(apiRatesObserver)
+            viewModel.citiesResponse.removeObserver(apiCitiesObserver)
 
 
         }
@@ -85,7 +85,7 @@ class AddCityViewModelTest {
 
             viewModel.addCity(name = "london")
 
-            Mockito.verify(addRateUseCase).invoke(City(name = "london"))
+            Mockito.verify(addCityUseCase).invoke(City(name = "london"))
 
         }
     }

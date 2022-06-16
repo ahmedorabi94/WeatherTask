@@ -11,7 +11,7 @@ import com.ahmedorabi.weatherapp.core.repo.RoomRepository
 import com.ahmedorabi.weatherapp.core.repo.WeatherDataSource
 import com.ahmedorabi.weatherapp.core.repo.WeatherRepository
 import com.ahmedorabi.weatherapp.features.add_city.framework.InRoomLocalDataSourceAddCity
-import com.ahmedorabi.weatherapp.features.weather_details.framework.ApiRatesListDataSource
+import com.ahmedorabi.weatherapp.features.weather_details.framework.ApiCitiesListDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,48 +24,48 @@ object CitiesListModule {
 
     @Singleton
     @Provides
-    fun provideInApiRatesListDataSource(apiService: ApiService): WeatherDataSource {
-        return ApiRatesListDataSource(apiService)
+    fun provideInApiCitiesListDataSource(apiService: ApiService): WeatherDataSource {
+        return ApiCitiesListDataSource(apiService)
     }
 
     @Singleton
     @Provides
-    fun provideRatesRepository(ratesDataSource: WeatherDataSource): WeatherRepository {
-        return WeatherRepository(ratesDataSource)
-    }
-
-
-    @Singleton
-    @Provides
-    fun provideUseCase(ratesRepository: WeatherRepository): GetCitiesUseCase {
-        return GetCitiesUseCase(ratesRepository)
-    }
-
-
-
-    @Singleton
-    @Provides
-    fun provideInRoomLocalDataSource(rateDao: WeatherDao): RoomDataSource {
-        return InRoomLocalDataSourceAddCity(rateDao)
+    fun provideCitiesRepository(citiesDataSource: WeatherDataSource): WeatherRepository {
+        return WeatherRepository(citiesDataSource)
     }
 
 
     @Singleton
     @Provides
-    fun provideRoomRatesRepository(roomDataSource: RoomDataSource): RoomRepository {
+    fun provideUseCase(citiesRepository: WeatherRepository): GetCitiesUseCase {
+        return GetCitiesUseCase(citiesRepository)
+    }
+
+
+
+    @Singleton
+    @Provides
+    fun provideInRoomLocalDataSource(cityDao: WeatherDao): RoomDataSource {
+        return InRoomLocalDataSourceAddCity(cityDao)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideRoomCitiesRepository(roomDataSource: RoomDataSource): RoomRepository {
         return RoomRepository(roomDataSource)
     }
 
 
     @Singleton
     @Provides
-    fun provideAddRateUseCase(roomRepository: RoomRepository): AddCityUseCase {
+    fun provideAddCityUseCase(roomRepository: RoomRepository): AddCityUseCase {
         return AddCityUseCase(roomRepository)
     }
 
     @Singleton
     @Provides
-    fun provideGetRatesRoomUseCase(roomRepository: RoomRepository): GetCitiesLocalUseCase {
+    fun provideGetCitiesRoomUseCase(roomRepository: RoomRepository): GetCitiesLocalUseCase {
         return GetCitiesLocalUseCase(roomRepository)
     }
 

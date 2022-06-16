@@ -40,15 +40,14 @@ class HistoricalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRatesResponseFlow(cityName?.lowercase() ?: "")
+        viewModel.getCitiesResponseFlow(cityName?.lowercase() ?: "")
         observeViewModel()
 
 
     }
 
-
     private fun observeViewModel() {
-        viewModel.ratesResponse.observe(viewLifecycleOwner) { userState ->
+        viewModel.citiesResponse.observe(viewLifecycleOwner) { userState ->
 
             userState?.let {
                 Timber.e(userState.toString())

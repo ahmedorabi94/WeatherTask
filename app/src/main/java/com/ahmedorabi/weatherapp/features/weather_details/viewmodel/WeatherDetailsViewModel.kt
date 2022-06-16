@@ -16,22 +16,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherDetailsViewModel @Inject constructor(
-    private val useCase: GetCitiesUseCase,
+    private val getCitiesUseCase: GetCitiesUseCase,
     private val addHistoricalModelUseCase: AddHistoricalModelUseCase
 ) :
     ViewModel() {
 
-    private val _ratesResponse = MutableLiveData<Resource<WeatherResponse>>()
-    val ratesResponse: LiveData<Resource<WeatherResponse>>
-        get() = _ratesResponse
+    private val _citiesResponse = MutableLiveData<Resource<WeatherResponse>>()
+    val citiesResponse: LiveData<Resource<WeatherResponse>>
+        get() = _citiesResponse
 
 
-    fun getRatesResponseFlow(name: String) {
+    fun getCitiesResponseFlow(name: String) {
         viewModelScope.launch {
-            useCase.invoke(name)
+            getCitiesUseCase.invoke(name)
                 .collect { response ->
                     Timber.e(response.toString())
-                    _ratesResponse.value = response
+                    _citiesResponse.value = response
                 }
         }
 

@@ -14,25 +14,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HistoricalViewModel @Inject constructor(
-    private val useCase: GetAllHistoricalUseCase,
+    private val getAllHistoricalUseCase: GetAllHistoricalUseCase,
 ) :
     ViewModel() {
 
-    private val _ratesResponse = MutableLiveData<List<HistoricalModel>>()
-    val ratesResponse: LiveData<List<HistoricalModel>>
-        get() = _ratesResponse
+    private val _citiesResponse = MutableLiveData<List<HistoricalModel>>()
+    val citiesResponse: LiveData<List<HistoricalModel>>
+        get() = _citiesResponse
 
 
-    init {
-        //  getRatesResponseFlow()
-    }
 
-    fun getRatesResponseFlow(name: String) {
+    fun getCitiesResponseFlow(name: String) {
         viewModelScope.launch {
-            useCase.invoke(name)
+            getAllHistoricalUseCase.invoke(name)
                 .collect { response ->
                     Timber.e(response.toString())
-                    _ratesResponse.value = response
+                    _citiesResponse.value = response
                 }
         }
 

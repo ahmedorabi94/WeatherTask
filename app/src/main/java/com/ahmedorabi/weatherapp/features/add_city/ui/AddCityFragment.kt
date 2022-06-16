@@ -39,7 +39,7 @@ class AddCityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRatesResponseFlow()
+        viewModel.getCitiesResponseFlow()
         observeViewModel()
 
         binding.addCityBtn.setOnClickListener {
@@ -59,7 +59,7 @@ class AddCityFragment : Fragment() {
             Timber.e("Is Insert")
             it?.let {
                 if (it) {
-                    viewModel.getRatesResponseFlow()
+                    viewModel.getCitiesResponseFlow()
                     Toast.makeText(requireContext(), "City Added", Toast.LENGTH_LONG).show()
                     sharedViewModel.sendMessage(false)
                 }
@@ -67,7 +67,7 @@ class AddCityFragment : Fragment() {
 
         }
 
-        viewModel.ratesResponse.observe(viewLifecycleOwner) { userState ->
+        viewModel.citiesResponse.observe(viewLifecycleOwner) { userState ->
 
             userState?.let {
                 Timber.e(userState.toString())

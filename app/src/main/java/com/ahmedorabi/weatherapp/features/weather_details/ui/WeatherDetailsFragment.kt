@@ -34,7 +34,6 @@ class WeatherDetailsFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +47,7 @@ class WeatherDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //initUI()
-        viewModel.getRatesResponseFlow(cityName ?: "london")
+        viewModel.getCitiesResponseFlow(cityName ?: "london")
         observeViewModel()
 
 
@@ -56,7 +55,7 @@ class WeatherDetailsFragment : Fragment() {
 
     private fun observeViewModel() {
 
-        viewModel.ratesResponse.observe(viewLifecycleOwner) { userState ->
+        viewModel.citiesResponse.observe(viewLifecycleOwner) { userState ->
 
             when (userState.status) {
                 Resource.Status.LOADING -> {
@@ -90,8 +89,8 @@ class WeatherDetailsFragment : Fragment() {
         Glide.with(this).load(url).into(binding.weatherIcon)
         binding.descriptionTV.text = response.weather[0].description
         binding.tempTv.text = " $celsius C"
-        binding.humidityTV.text =  response.main.humidity.toString() + " %"
-        binding.winSpeedTV.text =  response.wind.speed.toString() + " km/h"
+        binding.humidityTV.text = response.main.humidity.toString() + " %"
+        binding.winSpeedTV.text = response.wind.speed.toString() + " km/h"
 
         // dd-MM-yyyy
         val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)
