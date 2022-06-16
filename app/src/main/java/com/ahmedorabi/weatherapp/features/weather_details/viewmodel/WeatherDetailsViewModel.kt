@@ -26,10 +26,6 @@ class WeatherDetailsViewModel @Inject constructor(
         get() = _ratesResponse
 
 
-    init {
-        //  getRatesResponseFlow()
-    }
-
     fun getRatesResponseFlow(name: String) {
         viewModelScope.launch {
             useCase.invoke(name)
