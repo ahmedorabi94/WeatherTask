@@ -5,9 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.ahmedorabi.weatherapp.TestCoroutineRule
 import com.ahmedorabi.weatherapp.core.data.api.Resource
-import com.ahmedorabi.weatherapp.core.domain.model.Clouds
-import com.ahmedorabi.weatherapp.core.domain.model.Coord
-import com.ahmedorabi.weatherapp.core.domain.model.Main
+import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
 import com.ahmedorabi.weatherapp.core.domain.usecases.AddHistoricalModelUseCase
 import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
@@ -51,7 +49,7 @@ class WeatherDetailsViewModelTest {
 
     @Before
     fun setup() {
-        viewModel = WeatherDetailsViewModel(useCase,addHistoricalModelUseCase)
+        viewModel = WeatherDetailsViewModel(useCase, addHistoricalModelUseCase)
     }
 
     @Test
@@ -87,6 +85,19 @@ class WeatherDetailsViewModelTest {
         }
 
 
+    }
+
+    @Test
+    fun test_addHistoricalModel() {
+
+        testCoroutineRule.runBlockingTest {
+
+            val historicalModel = HistoricalModel(name = "", dateTime = "", temp = 0, desc = "")
+            viewModel.addHistoricalModel(historicalModel)
+
+            Mockito.verify(addHistoricalModelUseCase).invoke(historicalModel)
+
+        }
     }
 
 }

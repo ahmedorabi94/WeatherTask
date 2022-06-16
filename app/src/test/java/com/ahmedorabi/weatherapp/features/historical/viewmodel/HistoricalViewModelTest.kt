@@ -1,11 +1,10 @@
-package com.ahmedorabi.weatherapp.features.add_city.viewmodel
+package com.ahmedorabi.weatherapp.features.historical.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.ahmedorabi.weatherapp.TestCoroutineRule
-import com.ahmedorabi.weatherapp.core.domain.model.City
-import com.ahmedorabi.weatherapp.core.domain.usecases.AddCityUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesLocalUseCase
+import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
+import com.ahmedorabi.weatherapp.core.domain.usecases.GetAllHistoricalUseCase
 import junit.framework.Assert
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -18,10 +17,10 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
-
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class AddCityViewModelTest {
+class HistoricalViewModelTest {
+
 
     @get:Rule
     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
@@ -32,27 +31,24 @@ class AddCityViewModelTest {
 
 
     @Mock
-    private lateinit var apiRatesObserver: Observer<List<City>>
+    private lateinit var apiRatesObserver: Observer<List<HistoricalModel>>
 
-    private lateinit var viewModel: AddCityViewModel
+    private lateinit var viewModel: HistoricalViewModel
 
-
-    @Mock
-    private lateinit var useCase: GetCitiesLocalUseCase
 
     @Mock
-    private lateinit var addRateUseCase: AddCityUseCase
+    private lateinit var useCase: GetAllHistoricalUseCase
+
 
     @Before
     fun setup() {
-        viewModel = AddCityViewModel(useCase, addRateUseCase)
+        viewModel = HistoricalViewModel(useCase)
     }
 
     @Test
     fun shouldGetRatesListSuccessResponse() {
 
-        val list = ArrayList<City>()
-        list.add(City(name = "london"))
+        val list = ArrayList<HistoricalModel>()
         val flow = flow {
             emit(list)
         }
@@ -60,13 +56,13 @@ class AddCityViewModelTest {
 
             Mockito.doReturn(flow)
                 .`when`(useCase)
-                .invoke()
+                .invoke("london")
 
-            viewModel.getRatesResponseFlow()
+            viewModel.getRatesResponseFlow("london")
 
             viewModel.ratesResponse.observeForever(apiRatesObserver)
 
-            Mockito.verify(useCase).invoke()
+            Mockito.verify(useCase).invoke("london")
 
             Mockito.verify(apiRatesObserver).onChanged(list)
 
@@ -78,15 +74,4 @@ class AddCityViewModelTest {
         }
     }
 
-    @Test
-    fun test_add_city() {
-
-        testCoroutineRule.runBlockingTest {
-
-            viewModel.addCity(name = "london")
-
-            Mockito.verify(addRateUseCase).invoke(City(name = "london"))
-
-        }
-    }
 }
