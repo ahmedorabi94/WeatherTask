@@ -1,4 +1,9 @@
 # WeatherApp
+## The user should be able to maintain a list of ci3es where he can get the current weather status as well as historical weather data.
+
+![Screenshot_20220616_213721](https://user-images.githubusercontent.com/7644709/174151039-bd74559a-54c1-44bb-9d1e-551c70be0f4a.png)
+![Screenshot_20220616_213734](https://user-images.githubusercontent.com/7644709/174151044-ca0c7dfb-ef5a-4117-a051-c6efd569cd5f.png)
+![Screenshot_20220616_213745](https://user-images.githubusercontent.com/7644709/174151054-3978c622-4f68-446c-aeb5-bb984113f9c6.png)
 
 
 
