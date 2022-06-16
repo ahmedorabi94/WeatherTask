@@ -32,12 +32,11 @@ class AddCityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Cities"
+        activity?.title = getString(R.string.city_label)
         observeViewModel()
         binding.addCityBtn.setOnClickListener {
             findNavController().navigate(R.id.action_addCityFragment_to_addCityDialogFragment)
         }
-
     }
 
     private fun observeViewModel() {

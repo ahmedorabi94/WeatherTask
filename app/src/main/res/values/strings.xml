@@ -8,4 +8,5 @@
     <string name="temp">Temp :</string>
     <string name="humidity">Humidity :</string>
     <string name="windsspeed">WindsSpeed :</string>
+    <string name="city_label">Cities</string>
 </resources>
