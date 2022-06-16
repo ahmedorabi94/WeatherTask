@@ -39,48 +39,36 @@ class InRoomLocalDataSourceAddCityTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertCity() {
+    fun insertAndGetAllCity() {
 
         val city = City(name = "test1")
-        val city2 = City(name = "test2")
 
-
-//        val user: User = TestUtil.createUser(3).apply {
-//            setName("george")
-//        }
-//        userDao.insert(user)
         runBlocking {
             weatherDao.insertCity(city)
-            weatherDao.insertCity(city2)
-
-            //   val byName = userDao.findUsersByName("george")
-            //  assertEquals(list.size, 3)
         }
-
+        val list = weatherDao.getAllCities()
+        assertEquals(list.size, 1)
     }
 
     @Test
     @Throws(Exception::class)
-    fun writeUserAndReadInList() {
-//        val user: User = TestUtil.createUser(3).apply {
-//            setName("george")
-//        }
-//        userDao.insert(user)
+    fun insertAndGetAllCity2() {
+        val city = City(name = "test1")
+        val city2 = City(name = "test2")
+
+        runBlocking {
+            weatherDao.insertCity(city)
+            weatherDao.insertCity(city2)
+        }
         val list = weatherDao.getAllCities()
-        //   val byName = userDao.findUsersByName("george")
         assertEquals(list.size, 2)
     }
 
     @Test
     @Throws(Exception::class)
-    fun insertHistoricalModel() {
+    fun insertAndGetHistoricalModel() {
 
         val city = HistoricalModel(name = "test3", dateTime = "", desc = "desc", temp = 20)
-
-//        val user: User = TestUtil.createUser(3).apply {
-//            setName("george")
-//        }
-//        userDao.insert(user)
         runBlocking {
             weatherDao.insertHistoricalModel(city)
             val item = weatherDao.getAllHistoricalModel("test3")
