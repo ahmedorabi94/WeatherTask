@@ -1,5 +1,6 @@
 package com.ahmedorabi.weatherapp.features.historical.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -46,10 +47,11 @@ class HistoricalAdapter :
     class MyViewHolder(private var binding: HistoricalItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: HistoricalModel) {
             binding.dateTimeTV.text = item.dateTime
             binding.descTV.text = item.desc + ","
-            binding.tempTv.text = item.temp.toString() + "C"
+            binding.tempTv.text = item.temp.toString() +  "\u2103"
 
 
             binding.infoBtn.setOnClickListener {

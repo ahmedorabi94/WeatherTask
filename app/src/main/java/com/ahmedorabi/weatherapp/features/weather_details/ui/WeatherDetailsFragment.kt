@@ -81,7 +81,7 @@ class WeatherDetailsFragment : Fragment() {
 
         binding.titleTV.text = response.name
         binding.descriptionTV.text = response.weather[0].description
-        binding.tempTv.text = " $celsius C"
+        binding.tempTv.text = "$celsius \u2103"
         binding.humidityTV.text = response.main.humidity.toString() + " %"
         binding.winSpeedTV.text = response.wind.speed.toString() + " km/h"
 
