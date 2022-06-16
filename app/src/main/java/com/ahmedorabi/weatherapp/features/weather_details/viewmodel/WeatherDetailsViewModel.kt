@@ -1,11 +1,13 @@
-package com.ahmedorabi.weatherapp.features.weather_details
+package com.ahmedorabi.weatherapp.features.weather_details.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahmedorabi.weatherapp.core.data.api.Resource
+import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
+import com.ahmedorabi.weatherapp.core.domain.usecases.AddHistoricalModelUseCase
 import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherDetailsViewModel @Inject constructor(
-    private val useCase: GetCitiesUseCase
+    private val useCase: GetCitiesUseCase,
+    private val addHistoricalModelUseCase: AddHistoricalModelUseCase
 ) :
     ViewModel() {
 
@@ -24,10 +27,10 @@ class WeatherDetailsViewModel @Inject constructor(
 
 
     init {
-      //  getRatesResponseFlow()
+        //  getRatesResponseFlow()
     }
 
-     fun getRatesResponseFlow(name : String) {
+    fun getRatesResponseFlow(name: String) {
         viewModelScope.launch {
             useCase.invoke(name)
                 .collect { response ->
@@ -36,5 +39,11 @@ class WeatherDetailsViewModel @Inject constructor(
                 }
         }
 
+    }
+
+    fun addHistoricalModel(historicalModel: HistoricalModel) {
+        viewModelScope.launch {
+            addHistoricalModelUseCase.invoke(historicalModel)
+        }
     }
 }

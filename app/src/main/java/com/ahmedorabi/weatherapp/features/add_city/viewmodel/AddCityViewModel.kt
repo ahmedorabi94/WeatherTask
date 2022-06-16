@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.add_city
+package com.ahmedorabi.weatherapp.features.add_city.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,10 +27,10 @@ class AddCityViewModel @Inject constructor(
 
 
     init {
-        getRatesResponseFlow()
+      //  getRatesResponseFlow()
     }
 
-    private fun getRatesResponseFlow() {
+     fun getRatesResponseFlow() {
         viewModelScope.launch {
             useCase.invoke()
                 .collect { response ->

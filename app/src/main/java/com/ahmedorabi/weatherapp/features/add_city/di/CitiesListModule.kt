@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.add_city
+package com.ahmedorabi.weatherapp.features.add_city.di
 
 
 import com.ahmedorabi.weatherapp.core.data.api.ApiService
@@ -10,7 +10,8 @@ import com.ahmedorabi.weatherapp.core.repo.RoomDataSource
 import com.ahmedorabi.weatherapp.core.repo.RoomRepository
 import com.ahmedorabi.weatherapp.core.repo.WeatherDataSource
 import com.ahmedorabi.weatherapp.core.repo.WeatherRepository
-import com.ahmedorabi.weatherapp.features.weather_details.ApiRatesListDataSource
+import com.ahmedorabi.weatherapp.features.add_city.framework.InRoomLocalDataSourceAddCity
+import com.ahmedorabi.weatherapp.features.weather_details.framework.ApiRatesListDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

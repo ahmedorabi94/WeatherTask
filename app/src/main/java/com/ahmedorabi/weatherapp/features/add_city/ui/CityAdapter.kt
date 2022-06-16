@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.add_city
+package com.ahmedorabi.weatherapp.features.add_city.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -57,8 +57,10 @@ class CityAdapter :
             }
 
             binding.infoBtn.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("cityName", binding.cityNameTV.text.toString())
                 binding.root.findNavController()
-                    .navigate(R.id.action_addCityFragment_to_historicalFragment)
+                    .navigate(R.id.action_addCityFragment_to_historicalFragment,bundle)
             }
 
         }

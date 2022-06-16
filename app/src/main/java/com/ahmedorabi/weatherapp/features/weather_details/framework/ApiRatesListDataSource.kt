@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.weather_details
+package com.ahmedorabi.weatherapp.features.weather_details.framework
 
 import com.ahmedorabi.weatherapp.core.data.api.ApiService
 import com.ahmedorabi.weatherapp.core.data.api.Resource

@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.add_city
+package com.ahmedorabi.weatherapp.features.add_city.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.ahmedorabi.weatherapp.databinding.FragmentAddCityDialogBinding
+import com.ahmedorabi.weatherapp.features.add_city.viewmodel.AddCityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

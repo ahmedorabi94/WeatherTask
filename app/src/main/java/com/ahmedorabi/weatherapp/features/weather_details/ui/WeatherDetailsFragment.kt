@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp.features.weather_details
+package com.ahmedorabi.weatherapp.features.weather_details.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,11 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ahmedorabi.weatherapp.core.data.api.Resource
+import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
 import com.ahmedorabi.weatherapp.databinding.FragmentWeatherDetailsBinding
+import com.ahmedorabi.weatherapp.features.weather_details.viewmodel.WeatherDetailsViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -77,13 +81,33 @@ class WeatherDetailsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun updateUI(response: WeatherResponse) {
+
+        //   val celsius = ((response.main.temp - 32) * 5) / 9
+        val celsius = (response.main.temp - 273.15).toInt()
+
         binding.titleTV.text = response.name
         val url = "https://openweathermap.org/img/w/${response.weather[0].icon}.png"
         Glide.with(this).load(url).into(binding.weatherIcon)
         binding.descriptionTV.text = "Description : " + response.weather[0].description
-        binding.tempTv.text = "Temp : " + response.main.temp.toString()
+        binding.tempTv.text = "Temp : $celsius C"
         binding.humidityTV.text = "Humidity : " + response.main.humidity.toString()
         binding.winSpeedTV.text = "WindsSpeed : " + response.wind.speed.toString()
+
+        // dd-MM-yyyy
+        val df = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.US)
+        val time: String = df.format(Date())
+
+        Timber.e(time)
+
+        val historicalModel = HistoricalModel(
+            name = response.name.lowercase(),
+            desc = response.weather[0].main,
+            temp = celsius,
+            dateTime = time
+        )
+
+        viewModel.addHistoricalModel(historicalModel)
+
 
     }
 
