@@ -1,5 +1,5 @@
 # WeatherApp
- The user should be able to maintain a list of ci3es where he can get the current weather status as well as historical weather data.
+ The user should be able to maintain a list of cities where he can get the current weather status as well as historical weather data.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/7644709/174151039-bd74559a-54c1-44bb-9d1e-551c70be0f4a.png" width="250px" /> 
