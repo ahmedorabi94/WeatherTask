@@ -24,4 +24,6 @@
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
   - Repository pattern
   - Clean Architecture approach.
+
+![architecture-overview](https://user-images.githubusercontent.com/7644709/174149866-27ad6cf5-2b56-4087-9b38-d54c12fa7ef8.png)
 ![final-architecture](https://user-images.githubusercontent.com/7644709/94259993-b2691b80-ff2f-11ea-8bff-cc4ed3c8b6d9.png)
