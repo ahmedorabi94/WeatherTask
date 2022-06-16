@@ -41,6 +41,7 @@ class HistoricalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = "$cityName Historical"
         viewModel.getCitiesResponseFlow(cityName?.lowercase() ?: "")
         observeViewModel()
 

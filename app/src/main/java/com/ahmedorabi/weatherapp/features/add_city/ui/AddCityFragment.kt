@@ -39,6 +39,7 @@ class AddCityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title = "Cities"
         viewModel.getCitiesResponseFlow()
         observeViewModel()
         binding.addCityBtn.setOnClickListener {
