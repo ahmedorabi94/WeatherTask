@@ -1,14 +1,11 @@
 package com.ahmedorabi.weatherapp.features.add_city.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import com.ahmedorabi.weatherapp.TestCoroutineRule
 import com.ahmedorabi.weatherapp.core.domain.model.City
 import com.ahmedorabi.weatherapp.core.domain.usecases.AddCityUseCase
 import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesLocalUseCase
-import junit.framework.Assert
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -30,10 +27,6 @@ class AddCityViewModelTest {
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
 
-
-    @Mock
-    private lateinit var apiCitiesObserver: Observer<List<City>>
-
     private lateinit var viewModel: AddCityViewModel
 
 
@@ -48,35 +41,6 @@ class AddCityViewModelTest {
         viewModel = AddCityViewModel(useCase, addCityUseCase)
     }
 
-    @Test
-    fun shouldGetCitiesListSuccessResponse() {
-
-        val list = ArrayList<City>()
-        list.add(City(name = "london"))
-        val flow = flow {
-            emit(list)
-        }
-        testCoroutineRule.runBlockingTest {
-
-//            Mockito.doReturn(flow)
-//                .`when`(useCase)
-//                .invoke()
-//
-//            viewModel.getCitiesResponseFlow()
-
-         //   viewModel.allCities.observeForever(apiCitiesObserver)
-
-//            Mockito.verify(useCase).invoke()
-//
-//            Mockito.verify(apiCitiesObserver).onChanged(list)
-//
-//            Assert.assertEquals(viewModel.citiesResponse.value, list)
-//
-//            viewModel.citiesResponse.removeObserver(apiCitiesObserver)
-
-
-        }
-    }
 
     @Test
     fun test_add_city() {

@@ -1,6 +1,7 @@
 package com.ahmedorabi.weatherapp.features.add_city.framework
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -8,16 +9,21 @@ import com.ahmedorabi.weatherapp.core.db.AppDatabase
 import com.ahmedorabi.weatherapp.core.db.WeatherDao
 import com.ahmedorabi.weatherapp.core.domain.model.City
 import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
+import com.ahmedorabi.weatherapp.getOrAwaitValue
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class InRoomLocalDataSourceAddCityTest {
+
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var weatherDao: WeatherDao
     private lateinit var db: AppDatabase
@@ -45,9 +51,10 @@ class InRoomLocalDataSourceAddCityTest {
 
         runBlocking {
             weatherDao.insertCity(city)
+            val list = weatherDao.getAllCities()
+            assertEquals(list.getOrAwaitValue().size, 1)
         }
-        val list = weatherDao.getAllCities()
-        assertEquals(list.size, 1)
+
     }
 
     @Test
@@ -59,9 +66,10 @@ class InRoomLocalDataSourceAddCityTest {
         runBlocking {
             weatherDao.insertCity(city)
             weatherDao.insertCity(city2)
+
         }
         val list = weatherDao.getAllCities()
-        assertEquals(list.size, 2)
+        assertEquals(list.getOrAwaitValue().size, 2)
     }
 
     @Test
