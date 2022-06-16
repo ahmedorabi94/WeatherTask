@@ -9,16 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ahmedorabi.weatherapp.core.data.api.Resource
-import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
 import com.ahmedorabi.weatherapp.databinding.FragmentWeatherDetailsBinding
+import com.ahmedorabi.weatherapp.features.utils.CITY_MAME_KEY
 import com.ahmedorabi.weatherapp.features.weather_details.viewmodel.WeatherDetailsViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 @AndroidEntryPoint
 class WeatherDetailsFragment : Fragment() {
@@ -30,7 +27,7 @@ class WeatherDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            cityName = it.getString("cityName")
+            cityName = it.getString(CITY_MAME_KEY)
         }
     }
 
@@ -46,11 +43,8 @@ class WeatherDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //initUI()
-        viewModel.getCitiesResponseFlow(cityName ?: "london")
+        viewModel.getCitiesResponseFlow(cityName ?: "")
         observeViewModel()
-
-
     }
 
     private fun observeViewModel() {
@@ -80,32 +74,18 @@ class WeatherDetailsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun updateUI(response: WeatherResponse) {
-
-        //   val celsius = ((response.main.temp - 32) * 5) / 9
         val celsius = (response.main.temp - 273.15).toInt()
 
-        binding.titleTV.text = response.name
         val url = "https://openweathermap.org/img/w/${response.weather[0].icon}.png"
         Glide.with(this).load(url).into(binding.weatherIcon)
+
+        binding.titleTV.text = response.name
         binding.descriptionTV.text = response.weather[0].description
         binding.tempTv.text = " $celsius C"
         binding.humidityTV.text = response.main.humidity.toString() + " %"
         binding.winSpeedTV.text = response.wind.speed.toString() + " km/h"
 
-        // dd-MM-yyyy
-        val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)
-        val time: String = df.format(Date())
-
-        Timber.e(time)
-
-        val historicalModel = HistoricalModel(
-            name = response.name.lowercase(),
-            desc = response.weather[0].main,
-            temp = celsius,
-            dateTime = time
-        )
-
-        viewModel.addHistoricalModel(historicalModel)
+        viewModel.addHistoricalModel(celsius,response.name.lowercase(),response.weather[0].main)
 
 
     }

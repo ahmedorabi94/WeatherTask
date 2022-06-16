@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ahmedorabi.weatherapp.R
 import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.databinding.HistoricalItemBinding
+import com.ahmedorabi.weatherapp.features.utils.CITY_MAME_KEY
 
 class HistoricalAdapter :
     ListAdapter<HistoricalModel, HistoricalAdapter.MyViewHolder>(DiffCallback) {
@@ -53,7 +54,7 @@ class HistoricalAdapter :
 
             binding.infoBtn.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("cityName", item.name)
+                bundle.putString(CITY_MAME_KEY, item.name)
                 binding.root.findNavController()
                     .navigate(R.id.action_historicalFragment_to_weatherDetailsFragment, bundle)
             }

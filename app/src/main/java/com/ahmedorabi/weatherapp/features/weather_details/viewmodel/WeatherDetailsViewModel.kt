@@ -12,6 +12,8 @@ import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,7 +39,19 @@ class WeatherDetailsViewModel @Inject constructor(
 
     }
 
-    fun addHistoricalModel(historicalModel: HistoricalModel) {
+    fun addHistoricalModel(temp : Int, name : String,desc : String, ) {
+
+        // dd-MM-yyyy
+        val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)
+        val time: String = df.format(Date())
+
+        val historicalModel = HistoricalModel(
+            name = name,
+            desc = desc,
+            temp = temp,
+            dateTime = time
+        )
+
         viewModelScope.launch {
             addHistoricalModelUseCase.invoke(historicalModel)
         }

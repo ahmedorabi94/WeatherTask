@@ -41,7 +41,6 @@ class AddCityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCitiesResponseFlow()
         observeViewModel()
-
         binding.addCityBtn.setOnClickListener {
             findNavController().navigate(R.id.action_addCityFragment_to_addCityDialogFragment)
         }
@@ -54,7 +53,6 @@ class AddCityFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-
         sharedViewModel.isInsert.observe(viewLifecycleOwner) {
             Timber.e("Is Insert")
             it?.let {
@@ -64,19 +62,14 @@ class AddCityFragment : Fragment() {
                     sharedViewModel.sendMessage(false)
                 }
             }
-
         }
 
         viewModel.citiesResponse.observe(viewLifecycleOwner) { userState ->
-
             userState?.let {
-                Timber.e(userState.toString())
                 val adapter = CityAdapter()
                 binding.recyclerViewMain.adapter = adapter
-
                 adapter.submitList(userState)
             }
-
         }
 
     }

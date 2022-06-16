@@ -21,6 +21,8 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @ExperimentalCoroutinesApi
@@ -91,9 +93,12 @@ class WeatherDetailsViewModelTest {
     fun test_addHistoricalModel() {
 
         testCoroutineRule.runBlockingTest {
+            val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)
+            val time: String = df.format(Date())
 
-            val historicalModel = HistoricalModel(name = "", dateTime = "", temp = 0, desc = "")
-            viewModel.addHistoricalModel(historicalModel)
+            val historicalModel = HistoricalModel(name = "london", dateTime = time, temp = 12, desc = "test1")
+
+            viewModel.addHistoricalModel(12,"london","test1")
 
             Mockito.verify(addHistoricalModelUseCase).invoke(historicalModel)
 

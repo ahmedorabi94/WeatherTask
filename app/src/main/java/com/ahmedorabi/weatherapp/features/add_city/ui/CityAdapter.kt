@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ahmedorabi.weatherapp.R
 import com.ahmedorabi.weatherapp.core.domain.model.City
 import com.ahmedorabi.weatherapp.databinding.CityItemBinding
+import com.ahmedorabi.weatherapp.features.utils.CITY_MAME_KEY
 
 class CityAdapter :
     ListAdapter<City, CityAdapter.MyViewHolder>(DiffCallback) {
@@ -51,14 +52,14 @@ class CityAdapter :
 
             binding.cityNameTV.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("cityName", binding.cityNameTV.text.toString())
+                bundle.putString(CITY_MAME_KEY, binding.cityNameTV.text.toString())
                 binding.root.findNavController()
                     .navigate(R.id.action_addCityFragment_to_weatherDetailsFragment, bundle)
             }
 
             binding.infoBtn.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("cityName", binding.cityNameTV.text.toString())
+                bundle.putString(CITY_MAME_KEY, binding.cityNameTV.text.toString())
                 binding.root.findNavController()
                     .navigate(R.id.action_addCityFragment_to_historicalFragment,bundle)
             }

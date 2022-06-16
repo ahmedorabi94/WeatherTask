@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ahmedorabi.weatherapp.databinding.FragmentHistoricalBinding
 import com.ahmedorabi.weatherapp.features.historical.viewmodel.HistoricalViewModel
+import com.ahmedorabi.weatherapp.features.utils.CITY_MAME_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -24,7 +25,7 @@ class HistoricalFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            cityName = it.getString("cityName")
+            cityName = it.getString(CITY_MAME_KEY)
         }
     }
 
