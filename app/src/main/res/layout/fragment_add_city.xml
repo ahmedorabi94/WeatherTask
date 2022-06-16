@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Add City"
+        android:backgroundTint="#2388C7"
         app:cornerRadius="30dp"
         android:textAllCaps="false"
         app:icon="@android:drawable/ic_input_add"

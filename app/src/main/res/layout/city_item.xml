@@ -29,8 +29,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/titleBtn"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@null"
@@ -54,11 +54,12 @@
             android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
             android:includeFontPadding="false"
             android:lineSpacingExtra="0dp"
             android:maxLines="1"
             android:textAlignment="center"
-            android:textSize="12sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/titleBtn"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,8 +67,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/infoBtn"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@null"

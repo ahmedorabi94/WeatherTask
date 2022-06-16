@@ -88,10 +88,10 @@ class WeatherDetailsFragment : Fragment() {
         binding.titleTV.text = response.name
         val url = "https://openweathermap.org/img/w/${response.weather[0].icon}.png"
         Glide.with(this).load(url).into(binding.weatherIcon)
-        binding.descriptionTV.text = "Description : " + response.weather[0].description
-        binding.tempTv.text = "Temp : $celsius C"
-        binding.humidityTV.text = "Humidity : " + response.main.humidity.toString()
-        binding.winSpeedTV.text = "WindsSpeed : " + response.wind.speed.toString()
+        binding.descriptionTV.text = response.weather[0].description
+        binding.tempTv.text = " $celsius C"
+        binding.humidityTV.text =  response.main.humidity.toString() + " %"
+        binding.winSpeedTV.text =  response.wind.speed.toString() + " km/h"
 
         // dd-MM-yyyy
         val df = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.US)
