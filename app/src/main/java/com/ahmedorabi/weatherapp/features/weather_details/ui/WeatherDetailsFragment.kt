@@ -86,7 +86,11 @@ class WeatherDetailsFragment : Fragment() {
         binding.humidityTV.text = response.main.humidity.toString() + " %"
         binding.winSpeedTV.text = response.wind.speed.toString() + " km/h"
 
-        viewModel.addHistoricalModel(celsius,response.name.lowercase(),response.weather[0].main)
+        if (!viewModel.isSaveHistoricalModel){
+            viewModel.addHistoricalModel(celsius,response.name.lowercase(),response.weather[0].main)
+            viewModel.isSaveHistoricalModel = true
+        }
+
 
 
     }

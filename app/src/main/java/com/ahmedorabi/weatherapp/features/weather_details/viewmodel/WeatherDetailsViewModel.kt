@@ -22,6 +22,7 @@ class WeatherDetailsViewModel @Inject constructor(
     private val addHistoricalModelUseCase: AddHistoricalModelUseCase
 ) :
     ViewModel() {
+    var isSaveHistoricalModel = false
 
     private val _citiesResponse = MutableLiveData<Resource<WeatherResponse>>()
     val citiesResponse: LiveData<Resource<WeatherResponse>>
