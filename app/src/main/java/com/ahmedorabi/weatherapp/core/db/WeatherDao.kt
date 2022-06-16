@@ -1,5 +1,6 @@
 package com.ahmedorabi.weatherapp.core.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -17,7 +18,7 @@ interface WeatherDao {
     suspend fun insertHistoricalModel(historicalModel: HistoricalModel)
 
     @Query("Select * from cities")
-    fun getAllCities(): List<City>
+    fun getAllCities(): LiveData<List<City>>
 
     @Query("Select * from historical where name =:city")
     fun getAllHistoricalModel(city: String): List<HistoricalModel>

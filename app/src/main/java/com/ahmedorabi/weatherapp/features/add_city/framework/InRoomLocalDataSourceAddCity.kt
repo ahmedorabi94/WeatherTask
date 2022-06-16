@@ -1,5 +1,6 @@
 package com.ahmedorabi.weatherapp.features.add_city.framework
 
+import androidx.lifecycle.LiveData
 import com.ahmedorabi.weatherapp.core.db.WeatherDao
 import com.ahmedorabi.weatherapp.core.domain.model.City
 import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
@@ -16,17 +17,15 @@ class InRoomLocalDataSourceAddCity @Inject constructor(private val weatherDao: W
         weatherDao.insertCity(city)
     }
 
-    override suspend fun getCities(): Flow<List<City>> {
-        return flow {
-            emit(weatherDao.getAllCities())
-        }.flowOn(Dispatchers.IO)
+    override fun getCities(): LiveData<List<City>> {
+        return weatherDao.getAllCities()
     }
 
     override suspend fun addHistoricalModel(historicalModel: HistoricalModel) {
         weatherDao.insertHistoricalModel(historicalModel)
     }
 
-    override suspend fun getAllHistoricalModel(name : String): Flow<List<HistoricalModel>> {
+    override suspend fun getAllHistoricalModel(name: String): Flow<List<HistoricalModel>> {
         return flow {
             emit(weatherDao.getAllHistoricalModel(name))
         }.flowOn(Dispatchers.IO)

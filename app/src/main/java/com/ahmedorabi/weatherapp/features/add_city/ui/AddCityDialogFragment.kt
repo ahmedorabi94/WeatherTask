@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.ahmedorabi.weatherapp.databinding.FragmentAddCityDialogBinding
 import com.ahmedorabi.weatherapp.features.add_city.viewmodel.AddCityViewModel
-import com.ahmedorabi.weatherapp.features.add_city.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -21,8 +19,6 @@ class AddCityDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AddCityViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +34,6 @@ class AddCityDialogFragment : DialogFragment() {
         binding.addCityBtn.setOnClickListener {
             val city = binding.addCityEd.text.toString()
             viewModel.addCity(city)
-            sharedViewModel.sendMessage(true)
             dialog?.dismiss()
 
         }
