@@ -94,7 +94,7 @@ class WeatherDetailsFragment : Fragment() {
         binding.winSpeedTV.text =  response.wind.speed.toString() + " km/h"
 
         // dd-MM-yyyy
-        val df = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.US)
+        val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)
         val time: String = df.format(Date())
 
         Timber.e(time)

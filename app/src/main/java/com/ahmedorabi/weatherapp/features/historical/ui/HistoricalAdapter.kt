@@ -47,7 +47,7 @@ class HistoricalAdapter :
 
         fun bind(item: HistoricalModel) {
             binding.dateTimeTV.text = item.dateTime
-            binding.descTV.text = item.desc
+            binding.descTV.text = item.desc + ","
             binding.tempTv.text = item.temp.toString() + "C"
 
 
