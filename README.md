@@ -13,7 +13,7 @@
   - [View Binding](https://developer.android.com/topic/libraries/view-binding) - allows you to more easily write code that interacts with views.
   - [Room](https://developer.android.com/training/data-storage/room) - Save data in a local database using Room.
 - [Dependency Injection](https://developer.android.com/training/dependency-injection)
-  - [Dagger2](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a dependency injection library for Android that reduces        the boilerplate of doing manual dependency injection in your project
+  - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a dependency injection library for Android that reduces        the boilerplate of doing manual dependency injection in your project
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [Glide](https://github.com/bumptech/glide) - For Loading images from Urls.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
