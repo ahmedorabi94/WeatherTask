@@ -14,15 +14,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.ahmedorabi.weatherapp.core.data.api.Resource
@@ -31,13 +31,13 @@ import timber.log.Timber
 
 @Composable
 fun WeatherDetailsScreen(
-    cityName : String= "",
+    cityName: String = "",
     viewModel: WeatherDetailsViewModel = hiltViewModel(),
 ) {
 
-    val response by   viewModel.citiesResponse.observeAsState()
+    val response by viewModel.citiesResponse.observeAsState()
 
-    val forecastResponse by   viewModel.forecastResponse.observeAsState()
+    val forecastResponse by viewModel.forecastResponse.observeAsState()
 
     Timber.e("forecastResponse " + forecastResponse)
     LaunchedEffect(Unit) {
@@ -55,10 +55,11 @@ fun WeatherDetailsScreen(
                     color = Color.Black
                 )
             }
+
             Resource.Status.SUCCESS -> {
-               // hideLoading()
+                // hideLoading()
                 Timber.e(response?.data.toString())
-              //  updateUI(userState.data!!)
+                //  updateUI(userState.data!!)
 
 
                 response?.data?.let {
@@ -66,8 +67,12 @@ fun WeatherDetailsScreen(
 
                     val url = "https://openweathermap.org/img/w/${it.weather[0].icon}.png"
 
-                    if (!viewModel.isSaveHistoricalModel){
-                        viewModel.addHistoricalModel(celsius,response?.data?.name?.lowercase() ?: "",response?.data?.weather?.firstOrNull()?.main ?: "")
+                    if (!viewModel.isSaveHistoricalModel) {
+                        viewModel.addHistoricalModel(
+                            celsius,
+                            response?.data?.name?.lowercase() ?: "",
+                            response?.data?.weather?.firstOrNull()?.main ?: ""
+                        )
                         viewModel.isSaveHistoricalModel = true
                     }
 
@@ -185,22 +190,34 @@ fun WeatherDetailsScreen(
                                 color = Color.Blue
                             )
                         }
+
+
+
+                        Text(
+                            text = "7-day forecast",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .padding(top = 28.dp)
+                                .align(Alignment.CenterHorizontally)
+                        )
+
+
+                        forecastResponse?.data?.list.orEmpty().forEach { item ->
+                            DailyForecastItem(item)
+                        }
                     }
                 }
 
-
-
-
             }
+
             Resource.Status.ERROR -> {
-              //  hideLoading()
-               // Toast.makeText(activity, userState.message, Toast.LENGTH_LONG).show()
+                //  hideLoading()
+                // Toast.makeText(activity, userState.message, Toast.LENGTH_LONG).show()
             }
 
             else -> {}
         }
-
-
 
 
 //        // Progress Bar
