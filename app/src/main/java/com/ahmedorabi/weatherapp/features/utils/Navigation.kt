@@ -1,4 +1,4 @@
-package com.ahmedorabi.weatherapp
+package com.ahmedorabi.weatherapp.features.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -44,12 +44,12 @@ fun AppNavHost(
             AddCityDialog()
         }
 
-        composable(NavigationItem.WeatherDetailsScreen.route + "/{city}") {backStackEntry ->
+        composable(NavigationItem.WeatherDetailsScreen.route + "/{city}") { backStackEntry ->
             val city = backStackEntry.arguments?.getString("city")
             WeatherDetailsScreen(city ?: "")
         }
 
-        composable(NavigationItem.HistoricalScreen.route + "/{city}") {backStackEntry ->
+        composable(NavigationItem.HistoricalScreen.route + "/{city}") { backStackEntry ->
             val city = backStackEntry.arguments?.getString("city")
             HistoricalScreen(city ?: "")
         }

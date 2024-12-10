@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.ahmedorabi.weatherapp.NavigationItem
+import com.ahmedorabi.weatherapp.features.utils.NavigationItem
 import com.ahmedorabi.weatherapp.features.add_city.viewmodel.AddCityViewModel
 
 @Preview
