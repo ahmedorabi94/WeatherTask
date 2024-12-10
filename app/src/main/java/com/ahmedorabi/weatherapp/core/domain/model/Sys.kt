@@ -5,5 +5,7 @@ data class Sys(
     val id: Int,
     val sunrise: Int,
     val sunset: Int,
-    val type: Int
+    val type: Int,
+    val pod: String
+
 )

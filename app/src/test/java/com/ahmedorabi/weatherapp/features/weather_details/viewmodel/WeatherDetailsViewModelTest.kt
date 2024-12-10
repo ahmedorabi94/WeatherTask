@@ -9,6 +9,7 @@ import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
 import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
 import com.ahmedorabi.weatherapp.core.domain.usecases.AddHistoricalModelUseCase
 import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
+import com.ahmedorabi.weatherapp.core.domain.usecases.GetWeatherForecastUseCase
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -47,11 +48,14 @@ class WeatherDetailsViewModelTest {
     private lateinit var useCase: GetCitiesUseCase
 
     @Mock
+    private lateinit var getWeatherForecastUseCase: GetWeatherForecastUseCase
+
+    @Mock
     private lateinit var addHistoricalModelUseCase: AddHistoricalModelUseCase
 
     @Before
     fun setup() {
-        viewModel = WeatherDetailsViewModel(useCase, addHistoricalModelUseCase)
+        viewModel = WeatherDetailsViewModel(useCase, addHistoricalModelUseCase,getWeatherForecastUseCase)
     }
 
     @Test
