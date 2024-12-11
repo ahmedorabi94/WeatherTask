@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ahmedorabi.weatherapp.TestCoroutineRule
 import com.example.core.api.ApiService
 import com.example.core.api.Resource
+import com.example.core.domain.forecast.WeatherForecastResponse
 import com.example.core.domain.model.WeatherResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.drop
@@ -80,6 +81,49 @@ class ApiCitiesListDataSourceTest {
             }
 
             val response = apiCitiesListDataSource.getWeatherResponse("london").drop(1).first()
+
+            Assert.assertEquals(response, result1)
+
+
+        }
+    }
+
+
+
+    @Test
+    fun shouldGetForecastCitiesSuccessResponse() {
+
+
+        val weatherResponse = Mockito.mock(WeatherForecastResponse::class.java)
+        val result1 = Resource.success(weatherResponse)
+
+        runBlocking {
+
+            Mockito.doReturn(weatherResponse)
+                .`when`(apiService)
+                .getForecastWeatherResponseAsync("london")
+
+            val response = apiCitiesListDataSource.getForecastWeatherResponse("london").drop(1).first()
+
+            Assert.assertEquals(response, result1)
+
+        }
+    }
+
+
+    @Test
+    fun shouldGetForecastCitiesFailureResponse() {
+
+        val result1 = Resource.error<WeatherForecastResponse>("NetworkError")
+
+
+        runBlocking {
+
+            BDDMockito.given(apiService.getForecastWeatherResponseAsync("london")).willAnswer {
+                throw IOException("Ooops")
+            }
+
+            val response = apiCitiesListDataSource.getForecastWeatherResponse("london").drop(1).first()
 
             Assert.assertEquals(response, result1)
 

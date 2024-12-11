@@ -21,12 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //testUtils()
-
-
-
-
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {

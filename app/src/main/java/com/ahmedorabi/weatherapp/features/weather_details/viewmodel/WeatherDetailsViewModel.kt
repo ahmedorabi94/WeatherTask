@@ -12,6 +12,8 @@ import com.example.core.domain.usecases.AddHistoricalModelUseCase
 import com.example.core.domain.usecases.GetCitiesUseCase
 import com.example.core.domain.usecases.GetWeatherForecastUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -33,9 +35,8 @@ class WeatherDetailsViewModel @Inject constructor(
         get() = _citiesResponse
 
 
-    private val _forecastResponse = MutableLiveData<Resource<WeatherForecastResponse>>()
-    val forecastResponse: LiveData<Resource<WeatherForecastResponse>>
-        get() = _forecastResponse
+    private val _forecastState = MutableStateFlow(WeatherForecastResponse())
+    val forecastState: StateFlow<WeatherForecastResponse> = _forecastState
 
 
     fun getCitiesResponseFlow(name: String) {
@@ -49,18 +50,30 @@ class WeatherDetailsViewModel @Inject constructor(
 
     }
 
-    fun getForecastResponseFlow(name: String) {
+    private fun getForecastResponseFlow(name: String) {
         viewModelScope.launch {
             getWeatherForecastUseCase.invoke(name)
                 .collect { response ->
                     Timber.e(response.toString())
-                    _forecastResponse.value = response
+                    response.data?.let {
+                        _forecastState.value = it
+                    }
+
                 }
         }
 
     }
 
-    fun addHistoricalModel(temp : Int, name : String,desc : String, ) {
+    // Handle intents to update the state
+    fun handleIntent(intent: GetForecastIntent) {
+        when (intent) {
+            is GetForecastIntent.GetForecastList -> {
+                getForecastResponseFlow(intent.cityName)
+            }
+        }
+    }
+
+    fun addHistoricalModel(temp: Int, name: String, desc: String) {
 
         // dd-MM-yyyy
         val df = SimpleDateFormat("dd.MM.yyyy - hh:mm", Locale.US)

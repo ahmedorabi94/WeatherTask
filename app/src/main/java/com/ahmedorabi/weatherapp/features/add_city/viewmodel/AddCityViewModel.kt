@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddCityViewModel @Inject constructor(
-    private val getCitiesLocalUseCase: GetCitiesLocalUseCase,
+    getCitiesLocalUseCase: GetCitiesLocalUseCase,
     private val addCityUseCase: AddCityUseCase
 ) :
     ViewModel() {

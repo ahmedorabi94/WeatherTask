@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,34 +27,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.ahmedorabi.weatherapp.utils.NavigationItem
 import com.ahmedorabi.weatherapp.features.add_city.viewmodel.AddCityViewModel
+import com.ahmedorabi.weatherapp.utils.NavigationItem
 
 @Preview
 @Composable
 fun AddCityScreen(
     navController: NavHostController? = null,
     viewModel: AddCityViewModel = hiltViewModel(),
-    cities: List<String> = emptyList(), // A list of cities to display
-    onAddCityClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
 
-    val citiesList by  viewModel.allCities.observeAsState()
+    val citiesList by viewModel.allCities.observeAsState()
     val showDialog = remember { mutableStateOf(false) }
 
 
-    if (showDialog.value){
+    if (showDialog.value) {
         AddCityDialog(showDialog = showDialog)
     }
-
 
     Box(
         modifier = modifier
             .fillMaxSize()
             .padding(20.dp)
     ) {
-        // RecyclerView equivalent: LazyColumn
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -63,21 +59,17 @@ fun AddCityScreen(
             verticalArrangement = Arrangement.Top
         ) {
             items(citiesList.orEmpty()) { city ->
-                CityCard(cityName = city.name , onCardClick = {
+                CityCard(cityName = city.name, onCardClick = {
                     navController?.navigate(NavigationItem.WeatherDetailsScreen.route + "/${city.name}")
                 }, onInfoClick = {
                     navController?.navigate(NavigationItem.HistoricalScreen.route + "/${city.name}")
-                } , onTitleClick = {})
+                })
             }
         }
 
-        // Add City Button
         Button(
             onClick = {
-
                 showDialog.value = true
-
-             // navController?.navigate(NavigationItem.AddCityDialog.route)
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
@@ -98,15 +90,4 @@ fun AddCityScreen(
             )
         }
     }
-}
-
-@Composable
-fun CityItem(cityName: String) {
-    Text(
-        text = cityName,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        style = MaterialTheme.typography.bodyLarge
-    )
 }

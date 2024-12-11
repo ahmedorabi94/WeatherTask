@@ -20,13 +20,19 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
+import com.ahmedorabi.weatherapp.features.weather_details.viewmodel.GetForecastIntent
 import com.ahmedorabi.weatherapp.features.weather_details.viewmodel.WeatherDetailsViewModel
 import com.example.core.api.Resource
+import com.example.weatherhelper.getWeatherCelsius
+import com.example.weatherhelper.getWeatherIconUrl
+import com.example.weatherhelper.getWeatherTempStr
 import timber.log.Timber
 
 @Composable
@@ -37,12 +43,14 @@ fun WeatherDetailsScreen(
 
     val response by viewModel.citiesResponse.observeAsState()
 
-    val forecastResponse by viewModel.forecastResponse.observeAsState()
+    val forecastResponse by viewModel.forecastState.collectAsStateWithLifecycle()
 
-    Timber.e("forecastResponse " + forecastResponse)
+    Timber.e("forecastResponse $forecastResponse")
+
+
     LaunchedEffect(Unit) {
         viewModel.getCitiesResponseFlow(cityName)
-        viewModel.getForecastResponseFlow(cityName)
+        viewModel.handleIntent(GetForecastIntent.GetForecastList(cityName))
     }
     Box(modifier = Modifier.fillMaxSize()) {
 
@@ -57,21 +65,16 @@ fun WeatherDetailsScreen(
             }
 
             Resource.Status.SUCCESS -> {
-                // hideLoading()
                 Timber.e(response?.data.toString())
-                //  updateUI(userState.data!!)
 
+                response?.data?.let { weatherRes ->
 
-                response?.data?.let {
-                    val celsius = (it.main.temp - 273.15).toInt()
-
-                    val url = "https://openweathermap.org/img/w/${it.weather[0].icon}.png"
 
                     if (!viewModel.isSaveHistoricalModel) {
                         viewModel.addHistoricalModel(
-                            celsius,
-                            response?.data?.name?.lowercase() ?: "",
-                            response?.data?.weather?.firstOrNull()?.main ?: ""
+                            getWeatherCelsius(weatherRes.main.temp),
+                            weatherRes.name.lowercase(),
+                            weatherRes.weather.firstOrNull()?.main ?: ""
                         )
                         viewModel.isSaveHistoricalModel = true
                     }
@@ -85,7 +88,7 @@ fun WeatherDetailsScreen(
                     ) {
                         // Title
                         Text(
-                            text = response?.data?.name.toString(),
+                            text = weatherRes.name,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
@@ -93,28 +96,20 @@ fun WeatherDetailsScreen(
                                 .align(Alignment.CenterHorizontally)
                         )
 
-                        // Weather Icon
-//                        Icon(
-//                            painter = painterResource(id = weatherIconRes),
-//                            contentDescription = null,
-//                            modifier = Modifier
-//                                .size(100.dp)
-//                                .padding(30.dp)
-//                        )
 
-                        val painter = rememberAsyncImagePainter(model = url)
+                        val painter =
+                            rememberAsyncImagePainter(model = getWeatherIconUrl(weatherRes.weather.firstOrNull()?.icon.toString()))
                         Image(
+                            contentScale = ContentScale.Fit,
                             painter = painter,
                             contentDescription = "Image loaded using rememberImagePainter",
                             modifier = Modifier
-                                .size(100.dp)
-                                .padding(30.dp)
+                                .size(80.dp)
                         )
 
                         // Description
                         Row(
-                            modifier = Modifier
-                                .padding(top = 10.dp),
+                            modifier = Modifier,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
@@ -124,7 +119,7 @@ fun WeatherDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
-                                text = response?.data!!.weather[0].description.toString(),
+                                text = weatherRes.weather.firstOrNull()?.description.toString(),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Blue
@@ -144,7 +139,7 @@ fun WeatherDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
-                                text = "$celsius \u2103",
+                                text = getWeatherTempStr(weatherRes.main.temp),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Blue
@@ -164,7 +159,7 @@ fun WeatherDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
-                                text = response?.data?.main?.humidity.toString() + " %",
+                                text = weatherRes.main.humidity.toString() + " %",
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Blue
@@ -174,7 +169,7 @@ fun WeatherDetailsScreen(
                         // Wind Speed
                         Row(
                             modifier = Modifier
-                                .padding(top = 10.dp, bottom = 30.dp),
+                                .padding(top = 10.dp, bottom = 10.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
@@ -184,26 +179,23 @@ fun WeatherDetailsScreen(
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
-                                text = response?.data?.wind?.speed.toString() + " km/h",
+                                text = weatherRes.wind.speed.toString() + " km/h",
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Blue
                             )
                         }
 
-
-
                         Text(
                             text = "7-day forecast",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
-                                .padding(top = 28.dp)
+                                .padding(top = 20.dp)
                                 .align(Alignment.CenterHorizontally)
                         )
 
-
-                        forecastResponse?.data?.list.orEmpty().forEach { item ->
+                        forecastResponse.list.forEach { item ->
                             DailyForecastItem(item)
                         }
                     }
@@ -212,22 +204,11 @@ fun WeatherDetailsScreen(
             }
 
             Resource.Status.ERROR -> {
-                //  hideLoading()
-                // Toast.makeText(activity, userState.message, Toast.LENGTH_LONG).show()
+                Timber.e(response?.message.toString())
             }
 
             else -> {}
         }
 
-
-//        // Progress Bar
-//        if (isLoading) {
-//            CircularProgressIndicator(
-//                modifier = Modifier
-//                    .size(60.dp)
-//                    .align(Alignment.Center),
-//                color = Color.Black
-//            )
-//        }
     }
 }

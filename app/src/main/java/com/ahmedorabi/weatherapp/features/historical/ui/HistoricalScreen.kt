@@ -7,15 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,9 +27,7 @@ import com.ahmedorabi.weatherapp.features.historical.viewmodel.HistoricalViewMod
 @Composable
 fun HistoricalScreen(
     cityName: String = "",
-    viewModel: HistoricalViewModel = hiltViewModel(),
-    items: List<String> = emptyList(), // Replace String with your data model
-    onItemClick: ((String) -> Unit)? = null // Handle click events on items
+    viewModel: HistoricalViewModel = hiltViewModel()
 ) {
 
     val citiesResponse by viewModel.citiesResponse.observeAsState()
@@ -61,27 +59,10 @@ fun HistoricalScreen(
                 HistoryItem(
                     dateTime = item.dateTime,
                     description = item.desc + ",",
-                    temperature = item.temp.toString() + "\u2103",
-                    onInfoClick = {},
-                    onCardClick = {}
+                    temperature = item.temp.toString() + "\u2103"
                 )
             }
         }
     }
 
 }
-
-//@Composable
-//fun HistoricalItem(
-//    item: String,
-//    onClick: () -> Unit
-//) {
-//    // Replace with the layout of your historical_item
-//    Text(
-//        text = item,
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(16.dp)
-//            .clickable { onClick() }
-//    )
-//}

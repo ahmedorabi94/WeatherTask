@@ -35,7 +35,6 @@ import com.ahmedorabi.weatherapp.features.add_city.viewmodel.AddCityViewModel
 @Composable
 fun AddCityDialog(
     showDialog: MutableState<Boolean>? = null,
-    onAddCity: ((String) -> Unit)? = null,
     modifier: Modifier = Modifier,
     viewModel: AddCityViewModel = hiltViewModel()
 ) {
@@ -53,12 +52,11 @@ fun AddCityDialog(
         ) {
             Column(
                 modifier = modifier
-                  //  .fillMaxSize()
                     .padding(30.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
-                // Text Input
+
                 OutlinedTextField(
                     value = cityNameMutable.value,
                     onValueChange = { cityNameMutable.value = it },
@@ -75,10 +73,9 @@ fun AddCityDialog(
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                // Add Button
+
                 Button(
                     onClick = {
-                        //  onAddCity?.let { it(cityName) }
                         viewModel.addCity(cityNameMutable.value)
                         showDialog?.value = false
                     },
