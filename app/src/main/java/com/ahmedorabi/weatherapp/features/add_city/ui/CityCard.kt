@@ -34,7 +34,6 @@ fun CityCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 6.dp, vertical = 3.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(6.dp),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
