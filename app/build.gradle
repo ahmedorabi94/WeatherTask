@@ -26,6 +26,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -116,7 +119,8 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.7.7'
     androidTestImplementation 'org.mockito:mockito-android:3.7.7'
 
-    testImplementation 'org.mockito:mockito-inline:2.8.47'
+   // testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation("org.mockito:mockito-inline:5.2.0")
 
     testImplementation "androidx.arch.core:core-testing:2.2.0"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1"
