@@ -9,6 +9,26 @@ https://github.com/user-attachments/assets/06a92352-3378-46d6-bc81-5664c56bbfaf
 
 
 
+## How to use Weather helper library
+
+```
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://www.jitpack.io")
+        }
+    }
+}
+
+
+implementation("com.github.ahmedorabi94:WeatherTask:0.0.5")
+
+```
+
+
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Jetpack Compose ](https://developer.android.com/develop/ui/compose/documentation) - Jetpack Compose is the modern toolkit for building native Android UI. Here's where you'll find the latest information about using Compose.
