@@ -61,6 +61,20 @@ dependencies {
 //    }
 //}
 
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            create<MavenPublication>("release") {
+//                from(components["release"])
+//
+//                groupId = "com.github.ahmedorabi94"
+//                artifactId = "WeatherTask"
+//                version = "0.0.3"
+//            }
+//        }
+//    }
+//}
+
 afterEvaluate {
     publishing {
         publications {
@@ -68,11 +82,24 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.ahmedorabi94"
                 artifactId = "WeatherTask"
-                version = "0.0.3"
-
-                // Add the AAR artifact
-                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+                version = "0.0.4"
             }
         }
     }
 }
+
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = "com.github.ahmedorabi94"
+//                artifactId = "WeatherTask"
+//                version = "0.0.3"
+//
+//                // Add the AAR artifact
+//                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+//            }
+//        }
+//    }
+//}

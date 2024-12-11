@@ -24,6 +24,9 @@ class MainActivity2 : ComponentActivity() {
 
         //testUtils()
 
+
+
+
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
