@@ -23,12 +23,12 @@
 - [Dependency Injection](https://developer.android.com/training/dependency-injection)
   - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Hilt is a dependency injection library for Android that reduces        the boilerplate of doing manual dependency injection in your project
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
-- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 - Testing
   - [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit 4](https://junit.org/junit4/)
   - [Mockito](https://site.mockito.org/) - mocking framework
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - The MVI (Model-View-Intent)
   - Repository pattern
   - Clean Architecture approach.
 
