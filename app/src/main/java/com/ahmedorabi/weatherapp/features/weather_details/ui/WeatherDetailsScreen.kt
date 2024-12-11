@@ -49,8 +49,8 @@ fun WeatherDetailsScreen(
 
 
     LaunchedEffect(Unit) {
-        viewModel.getCitiesResponseFlow(cityName)
-        viewModel.handleIntent(GetForecastIntent.GetForecastList(cityName))
+        viewModel.getCitiesResponseFlow(cityName.replace(" ", ""))
+        viewModel.handleIntent(GetForecastIntent.GetForecastList(cityName.replace(" ", "")))
     }
     Box(modifier = Modifier.fillMaxSize()) {
 

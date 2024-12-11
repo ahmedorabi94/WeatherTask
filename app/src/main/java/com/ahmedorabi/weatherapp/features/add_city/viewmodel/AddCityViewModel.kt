@@ -21,7 +21,7 @@ class AddCityViewModel @Inject constructor(
 
     fun addCity(name: String) {
         viewModelScope.launch {
-            addCityUseCase.invoke(City(name = name))
+            addCityUseCase.invoke(City(name = name.replace(" ", "")))
         }
     }
 

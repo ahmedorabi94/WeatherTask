@@ -33,7 +33,7 @@ fun HistoricalScreen(
     val citiesResponse by viewModel.citiesResponse.observeAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.getCitiesResponseFlow(cityName.lowercase())
+        viewModel.getCitiesResponseFlow(cityName.lowercase().replace(" ", ""))
     }
 
     Column {
