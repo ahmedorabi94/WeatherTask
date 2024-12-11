@@ -34,6 +34,14 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      # Step 5: Run Unit Tests
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      # Step 6: Run Lint Checks
+      - name: Run Lint Checks
+        run: ./gradlew lint
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.3
         with:
