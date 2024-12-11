@@ -14,12 +14,16 @@ import androidx.navigation.compose.rememberNavController
 import com.ahmedorabi.weatherapp.features.add_city.ui.AddCityScreen
 import com.ahmedorabi.weatherapp.utils.AppNavHost
 import com.ahmedorabi.weatherapp.ui.theme.WeatherAppTheme
+//import com.example.weatherhelper.testUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //testUtils()
+
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
