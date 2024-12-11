@@ -1,10 +1,10 @@
 package com.ahmedorabi.weatherapp.features.add_city.framework
 
 import androidx.lifecycle.LiveData
-import com.ahmedorabi.weatherapp.core.db.WeatherDao
-import com.ahmedorabi.weatherapp.core.domain.model.City
-import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
-import com.ahmedorabi.weatherapp.core.repo.RoomDataSource
+import com.example.core.db.WeatherDao
+import com.example.core.domain.model.City
+import com.example.core.domain.model.HistoricalModel
+import com.example.core.repo.RoomDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.ahmedorabi.weatherapp.features.add_city.ui.AddCityScreen
-import com.ahmedorabi.weatherapp.features.utils.AppNavHost
+import com.ahmedorabi.weatherapp.utils.AppNavHost
 import com.ahmedorabi.weatherapp.ui.theme.WeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 

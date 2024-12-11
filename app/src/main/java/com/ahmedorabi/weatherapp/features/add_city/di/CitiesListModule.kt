@@ -1,17 +1,17 @@
 package com.ahmedorabi.weatherapp.features.add_city.di
 
 
-import com.ahmedorabi.weatherapp.core.data.api.ApiService
-import com.ahmedorabi.weatherapp.core.db.WeatherDao
-import com.ahmedorabi.weatherapp.core.domain.usecases.AddCityUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesLocalUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
-import com.ahmedorabi.weatherapp.core.repo.RoomDataSource
-import com.ahmedorabi.weatherapp.core.repo.RoomRepository
-import com.ahmedorabi.weatherapp.core.repo.WeatherDataSource
-import com.ahmedorabi.weatherapp.core.repo.WeatherRepository
 import com.ahmedorabi.weatherapp.features.add_city.framework.InRoomLocalDataSourceAddCity
 import com.ahmedorabi.weatherapp.features.weather_details.framework.ApiCitiesListDataSource
+import com.example.core.api.ApiService
+import com.example.core.db.WeatherDao
+import com.example.core.domain.usecases.AddCityUseCase
+import com.example.core.domain.usecases.GetCitiesLocalUseCase
+import com.example.core.domain.usecases.GetCitiesUseCase
+import com.example.core.repo.RoomDataSource
+import com.example.core.repo.RoomRepository
+import com.example.core.repo.WeatherDataSource
+import com.example.core.repo.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

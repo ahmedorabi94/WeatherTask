@@ -15,11 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ahmedorabi.weatherapp.core.domain.forecast.Item0
+import com.example.core.domain.forecast.Item0
 
 
 @Composable
-fun DailyForecastItem(forecast: Item0) {
+fun DailyForecastItem(forecast: com.example.core.domain.forecast.Item0) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()

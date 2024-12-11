@@ -4,18 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ahmedorabi.weatherapp.core.data.api.Resource
-import com.ahmedorabi.weatherapp.core.domain.forecast.WeatherForecastResponse
-import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
-import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
-import com.ahmedorabi.weatherapp.core.domain.usecases.AddHistoricalModelUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetWeatherForecastUseCase
+import com.example.core.api.Resource
+import com.example.core.domain.forecast.WeatherForecastResponse
+import com.example.core.domain.model.HistoricalModel
+import com.example.core.domain.model.WeatherResponse
+import com.example.core.domain.usecases.AddHistoricalModelUseCase
+import com.example.core.domain.usecases.GetCitiesUseCase
+import com.example.core.domain.usecases.GetWeatherForecastUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel

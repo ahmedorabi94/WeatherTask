@@ -2,9 +2,9 @@ package com.ahmedorabi.weatherapp.features.add_city.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ahmedorabi.weatherapp.TestCoroutineRule
-import com.ahmedorabi.weatherapp.core.domain.model.City
-import com.ahmedorabi.weatherapp.core.domain.usecases.AddCityUseCase
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetCitiesLocalUseCase
+import com.example.core.domain.model.City
+import com.example.core.domain.usecases.AddCityUseCase
+import com.example.core.domain.usecases.GetCitiesLocalUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule

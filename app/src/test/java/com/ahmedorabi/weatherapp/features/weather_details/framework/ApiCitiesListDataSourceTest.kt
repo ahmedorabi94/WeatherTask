@@ -2,10 +2,9 @@ package com.ahmedorabi.weatherapp.features.weather_details.framework
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ahmedorabi.weatherapp.TestCoroutineRule
-import com.ahmedorabi.weatherapp.core.data.api.ApiService
-import com.ahmedorabi.weatherapp.core.data.api.Resource
-import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
-
+import com.example.core.api.ApiService
+import com.example.core.api.Resource
+import com.example.core.domain.model.WeatherResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first

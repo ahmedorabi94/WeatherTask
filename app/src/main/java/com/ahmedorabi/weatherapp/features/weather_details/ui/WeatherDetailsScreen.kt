@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.ahmedorabi.weatherapp.core.data.api.Resource
 import com.ahmedorabi.weatherapp.features.weather_details.viewmodel.WeatherDetailsViewModel
+import com.example.core.api.Resource
 import timber.log.Timber
 
 @Composable

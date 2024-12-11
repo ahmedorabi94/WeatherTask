@@ -1,12 +1,12 @@
 package com.ahmedorabi.weatherapp.features.weather_details.framework
 
-import com.ahmedorabi.weatherapp.core.data.api.ApiService
-import com.ahmedorabi.weatherapp.core.data.api.Resource
-import com.ahmedorabi.weatherapp.core.data.api.ResultWrapper
-import com.ahmedorabi.weatherapp.core.data.api.safeApiCall
-import com.ahmedorabi.weatherapp.core.domain.forecast.WeatherForecastResponse
-import com.ahmedorabi.weatherapp.core.domain.model.WeatherResponse
-import com.ahmedorabi.weatherapp.core.repo.WeatherDataSource
+import com.example.core.api.ApiService
+import com.example.core.api.Resource
+import com.example.core.api.ResultWrapper
+import com.example.core.api.safeApiCall
+import com.example.core.domain.forecast.WeatherForecastResponse
+import com.example.core.domain.model.WeatherResponse
+import com.example.core.repo.WeatherDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

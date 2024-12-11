@@ -3,8 +3,8 @@ package com.ahmedorabi.weatherapp.features.historical.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.ahmedorabi.weatherapp.TestCoroutineRule
-import com.ahmedorabi.weatherapp.core.domain.model.HistoricalModel
-import com.ahmedorabi.weatherapp.core.domain.usecases.GetAllHistoricalUseCase
+import com.example.core.domain.model.HistoricalModel
+import com.example.core.domain.usecases.GetAllHistoricalUseCase
 import junit.framework.Assert
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
