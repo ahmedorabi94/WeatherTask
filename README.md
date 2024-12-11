@@ -1,3 +1,6 @@
+[![](https://jitpack.io/v/ahmedorabi94/WeatherTask.svg)](https://jitpack.io/#ahmedorabi94/WeatherTask)
+
+
 # WeatherApp
  The user should be able to maintain a list of cities where he can get the current weather status as well as historical weather data.
 
