@@ -74,7 +74,7 @@ fun WeatherDetailsScreen(
                         viewModel.addHistoricalModel(
                             getWeatherCelsius(weatherRes.main.temp),
                             weatherRes.name.lowercase(),
-                            weatherRes.weather.firstOrNull()?.main ?: ""
+                            weatherRes.weather.firstOrNull()?.description ?: ""
                         )
                         viewModel.isSaveHistoricalModel = true
                     }
