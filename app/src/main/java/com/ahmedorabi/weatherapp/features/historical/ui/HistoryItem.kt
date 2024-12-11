@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import com.ahmedorabi.weatherapp.R
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryItem(
     dateTime: String,
@@ -44,7 +43,7 @@ fun HistoryItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 6.dp, vertical = 3.dp)
-            .clickable { onCardClick() },
+            ,
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(6.dp),
         elevation = CardDefaults.cardElevation(2.dp)
@@ -59,8 +58,8 @@ fun HistoryItem(
                 text = dateTime,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
+                textAlign = TextAlign.Start,
+                modifier = Modifier.fillMaxWidth().padding(start = 10.dp, top = 10.dp)
             )
 
             Spacer(modifier = Modifier.height(5.dp))
@@ -69,7 +68,7 @@ fun HistoryItem(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 30.dp),
+                    .padding(start = 10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -89,20 +88,20 @@ fun HistoryItem(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Info Button
-            IconButton(
-                onClick = onInfoClick,
-                modifier = Modifier
-                    .size(45.dp)
-                    .align(Alignment.End)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_back_24px),
-                    contentDescription = "Info Button",
-                    tint = Color.Unspecified,
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
+//            // Info Button
+//            IconButton(
+//                onClick = onInfoClick,
+//                modifier = Modifier
+//                    .size(45.dp)
+//                    .align(Alignment.End)
+//            ) {
+//                Icon(
+//                    painter = painterResource(id = R.drawable.arrow_back_24px),
+//                    contentDescription = "Info Button",
+//                    tint = Color.Unspecified,
+//                    modifier = Modifier.fillMaxSize()
+//                )
+//            }
         }
     }
 }

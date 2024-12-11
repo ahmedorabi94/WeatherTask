@@ -68,7 +68,7 @@ fun CityCard(
                     .padding(horizontal = 8.dp)
                     .clickable { onCardClick() },
                 fontSize = 18.sp,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 fontFamily = FontFamily.Default,
                 maxLines = 1
             )
