@@ -1,11 +1,6 @@
 # WeatherApp
  The user should be able to maintain a list of cities where he can get the current weather status as well as historical weather data.
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/7644709/174151039-bd74559a-54c1-44bb-9d1e-551c70be0f4a.png" width="250px" /> 
-  <img src="https://user-images.githubusercontent.com/7644709/174151044-ca0c7dfb-ef5a-4117-a051-c6efd569cd5f.png" width="250px" /> 
-  <img src="https://user-images.githubusercontent.com/7644709/174151054-3978c622-4f68-446c-aeb5-bb984113f9c6.png" width="250px" />  
-</div>
 
 https://github.com/user-attachments/assets/06a92352-3378-46d6-bc81-5664c56bbfaf
 
