@@ -47,15 +47,31 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.ahmedorabi94"
-            artifactId = "WeatherApp"
-            version = "0.0.2"
+//publishing {
+//    publications {
+//        register<MavenPublication>("release") {
+//            groupId = "com.github.ahmedorabi94"
+//            artifactId = "WeatherTask"
+//            version = "0.0.3"
+//
+//            afterEvaluate {
+//                from(components["release"])
+//            }
+//        }
+//    }
+//}
 
-            afterEvaluate {
-                from(components["release"])
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = "com.github.ahmedorabi94"
+                artifactId = "WeatherTask"
+                version = "0.0.3"
+
+                // Add the AAR artifact
+                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             }
         }
     }
